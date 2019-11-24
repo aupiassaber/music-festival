@@ -22,7 +22,6 @@ public class FestivalInfoGetter {
     private static final Logger debug = LogManager.getLogger("debug");
     private ObjectSets objectSets = new ObjectSets();
     private int queryCounter = 0;
-//    public util.Cache cache = util.Cache.getCacheInstance();
 
     /**
      * Getter for stored object sets
