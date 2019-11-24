@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{dd.MM.yyyy HH:mm:ss}{Australia/Canberra} [%t] %C{1} %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="debug-file"
+                     filename="logs/${date:yyyy-MM-dd}/debug-${date:yyyy-MM-dd}-final.log"
+                     filePattern="logs/${date:yyyy-MM-dd}/debug-%d{yyyy-MM-dd}-%i.log"
+                     immediateFlush="true"
+                     append="true">
+            <PatternLayout
+                    pattern="%d{dd.MM.yyyy HH:mm:ss}{Australia/Melbourne} %C{1} %-5level %msg%n%ex{full}"/>
+            <SizeBasedTriggeringPolicy size="5 MB"/>
+            <DefaultRolloverStrategy fileIndex="nomax"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="debug" level="info" additivity="false">
+            <appender-ref ref="debug-file" level="info"/>
+        </Logger>
+    </Loggers>
+</Configuration>

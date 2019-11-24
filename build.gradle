@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'org.festival.music'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//mainClassName = 'FestivalInfoPrinter'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.logging.log4j:log4j-core:2.12.1'
+    compile 'org.apache.logging.log4j:log4j-api:2.12.1'
+
+    compile 'org.apache.cxf:cxf-rt-rs-client:3.3.2'
+    compile 'org.apache.cxf:cxf-rt-rs-extension-providers:3.3.2'
+    compile 'org.apache.cxf:cxf-rt-transports-http-hc:3.3.2'
+    compile 'org.glassfish:javax.json:1.1.4'
+
+    compile 'com.github.ben-manes.caffeine:caffeine:2.8.0'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+}
+
+task runBuiltJar(type: JavaExec) {
+    classpath = files('build/libs/${project.name}')
+    classpath += sourceSets.main.runtimeClasspath
+    main = "FestivalInfoPrinter"
+}
